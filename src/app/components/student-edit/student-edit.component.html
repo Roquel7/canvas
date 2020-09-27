@@ -1,0 +1,49 @@
+<form [formGroup]="form">
+  <section>
+    <label for="name">Name: </label>
+    <input type="text" name="name" id="name" formControlName="name">
+    <span [hidden]="form.controls.name.valid" class="error">*Name is required</span>
+  </section>
+
+  <section>
+    <label for="email">Email: </label>
+    <input type="email" name="email" id="email" formControlName="email">
+    <span [hidden]="!form.controls.email.hasError('required')" class="error">
+      *Email is required
+    </span>
+    <span [hidden]="!form.controls.email.hasError('email')" class="error">
+      *Invalid Email
+    </span>
+
+  </section>
+
+  <section formArrayName="phoneNumbers">
+    <section *ngFor="let phone of phoneNumbers.controls; let i = index ">
+
+      <div [formGroup]="phone">
+        <input type="text" name="alias" formControlName="alias"/>
+        <input type="text" name="number" formControlName="number"/>
+        <button
+        (click)="addPhone()"
+        *ngIf="i === phoneNumbers.controls.length - 1">
+        Add
+      </button>
+      </div>
+    </section>
+  </section>
+
+  <button (click)="reset()">Reset</button>
+  <button (click)="submit()">Submit</button>
+
+</form>
+
+
+<p>Student</p>
+<pre>{{ student | json }}</pre>
+
+<p>Form:</p>
+<pre>{{ form.value | json}}</pre>
+
+<p>Validation:</p>
+<pre>Name: {{ form.controls.name.valid | json }}</pre>
+<pre>Email: {{ form.controls.email.valid | json }}</pre>

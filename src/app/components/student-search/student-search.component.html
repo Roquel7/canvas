@@ -1,0 +1,15 @@
+<p>student-search works!</p>
+<form class="border">
+  <input
+    type="text"
+    name="search"
+    placeholder="Search for a student"
+    [(ngModel)]="searchByName"
+    required
+    #search="ngModel"
+  >
+  <span [hidden]="search.valid" class="error">
+    *A search term is required.
+  </span>
+  <input type="submit" value="search">
+</form>

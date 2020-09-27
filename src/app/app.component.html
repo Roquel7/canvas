@@ -1,0 +1,25 @@
+<button (click)="goBack()">Go Back</button>
+<button (click)="goHome()">Home</button>
+
+
+<!-- Routing example 1 -->
+
+<!-- <div *ngFor="let student of students" routerLink="/students/{{student.id}}">
+  {{ student.name }}
+</div> -->
+
+
+<!-- Routing example 1 -->
+
+<div class="border">
+  <app-student-search></app-student-search>
+
+
+  <div *ngFor="let student of students" (click)="goToStudent(student.id)">
+  {{ student.name }}
+  </div>
+
+
+  <router-outlet></router-outlet>
+</div>
+
