@@ -1,11 +1,23 @@
-<h3> Info for {{ student.name }} </h3>
+<div nfIf="student">
+  <h3> Info for {{ student.name }} </h3>
 
-<div> Id: {{ studentId }}</div>
-<div> Grade: {{ student.grade }}</div>
-<div> Teacher: {{ student.teacher }}</div>
-<div> Email: {{ student.email }}</div>
+  <div> Id: {{ studentId }}</div>
+  <div>{{ student.name }}</div>
+  <div>DOB: {{ student.dob | date : 'MM/d/yyyy' }}</div>
+  <div> Grade: {{ student.grade }}</div>
+  <div> Teacher: {{ student.teacher }}</div>
+  <div> Email: {{ student.email }}</div>
+  <div> Hourly Rate: {{ student.hourlyRate | currency: 'USD' }}</div>
+  <div>Exponent Pipe example: {{ 2 | exponent: 3 }}</div>
+  <div>Exponent Pipe class: {{ exponentResult }}</div>
 
 
-<button routerLink="edit">Edit</button>
+
+
+
+  <button routerLink="edit">Edit</button>
+</div>
+
+
 
 

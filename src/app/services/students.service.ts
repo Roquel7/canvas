@@ -1,36 +1,30 @@
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Student } from '../model/student';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentsService {
-  students: Student[] = [
-    {
-      id: 1,
-      name: 'John',
-      email: 'j@gmail.com',
-      grade: '1st',
-      teacher: 'Mr. Mac',
-    },
-    {
-      id: 2,
-      name: 'Jimbo',
-      email: 'jimbo@yahoo.com',
-      grade: '2nd',
-      teacher: 'Mrs. Frizzle'
-    },
-    {
-      id: 3,
-      name: 'Todd',
-      email: 't@gmail.com',
-      grade: '6th',
-      teacher: 'Ms. Sierra'
-    },
-  ];
-  constructor() { }
 
-  getStudentById(id: number): Student {
-    return this.students.find(student => student.id === id);
+  constructor( public http: HttpClient) { }
+
+  getStudents(): any {
+    return this.http.get('/api/students');
+  }
+
+  getStudentById(id: number): Observable<Student> {
+    // return this.students.find(student => student.id === id);
+    // return {
+    //   id: 1,
+    //   name: 'John',
+    //   dob: new Date(1998, 4, 1),
+    //   email: 'j@gmail.com',
+    //   grade: '1st',
+    //   teacher: 'Mr. Mac',
+    //   hourlyRate: 5
+    // };
+    return this.http.get<Student>(`/api/students/${id}`);
   }
 }

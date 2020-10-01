@@ -1,5 +1,5 @@
 <p>student-search works!</p>
-<form class="border">
+<form class="border" (ngSubmit)="submit()">
   <input
     type="text"
     name="search"
@@ -11,5 +11,6 @@
   <span [hidden]="search.valid" class="error">
     *A search term is required.
   </span>
-  <input type="submit" value="search">
+  <input type="submit" value="search"/>
+  <input type="button" value="Reset Using Observables" #reset/>
 </form>

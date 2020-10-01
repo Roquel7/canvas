@@ -1,3 +1,4 @@
+import { InMemoryDb } from './in-memory-db';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -7,21 +8,29 @@ import { StudentDetailComponent } from './components/student-detail/student-deta
 import { StudentEditComponent } from './components/student-edit/student-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StudentSearchComponent } from './components/student-search/student-search.component';
+import { ExponentPipe } from './pipes/exponent.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentDetailComponent,
     StudentEditComponent,
-    StudentSearchComponent
+    StudentSearchComponent,
+    ExponentPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDb)
   ],
-  providers: [],
+  providers: [
+    ExponentPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,10 +12,18 @@
 <!-- Routing example 1 -->
 
 <div class="border">
-  <app-student-search></app-student-search>
+  <app-student-search
+  [students]="students"
+  (filteredStudents)="onFilteredStudents($event)"
+  >
+
+  </app-student-search>
 
 
-  <div *ngFor="let student of students" (click)="goToStudent(student.id)">
+  <div
+    *ngFor="let student of filtered"
+    (click)="goToStudent(student.id)"
+  >
   {{ student.name }}
   </div>
 
